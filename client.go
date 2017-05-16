@@ -4,7 +4,6 @@ import(
   "net/url"
 
   "github.com/gorilla/websocket"
-  "github.com/dgrijalva/jwt-go"
 )
 
 type Client struct {
@@ -21,12 +20,8 @@ func NewClient(server, jwtSecret string, read, write []string) (*Client, error) 
 
   c.Read = read
   c.Write = write
-  auth := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-      "read": c.Read,
-      "write": c.Write,
-  })
 
-  c.token, err = auth.SignedString([]byte(jwtSecret)); if err != nil {
+  c.token, err =  NewToken(jwtSecret, read, write); if err != nil {
     return c, err
   }
 
