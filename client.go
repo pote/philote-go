@@ -11,7 +11,7 @@ type Client struct {
   Read []string
   Write []string
   Server *url.URL
-  token string
+  Token string
 }
 
 func NewClient(server, jwtSecret string, read, write []string) (*Client, error) {
@@ -21,12 +21,12 @@ func NewClient(server, jwtSecret string, read, write []string) (*Client, error) 
   c.Read = read
   c.Write = write
 
-  c.token, err =  NewToken(jwtSecret, read, write); if err != nil {
+  c.Token, err =  NewToken(jwtSecret, read, write); if err != nil {
     return c, err
   }
 
   header := map[string][]string{
-    "Authorization": []string{"Bearer " + c.token},
+    "Authorization": []string{"Bearer " + c.Token},
   }
 
   c.Server, err = url.Parse(server); if err != nil {
