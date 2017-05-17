@@ -8,22 +8,15 @@ import(
 
 type Client struct {
   Conn *websocket.Conn
-  Read []string
-  Write []string
   Server *url.URL
   Token string
 }
 
-func NewClient(server, jwtSecret string, read, write []string) (*Client, error) {
+func NewClient(server, token string) (*Client, error) {
   var err error
   c := &Client{}
 
-  c.Read = read
-  c.Write = write
-
-  c.Token, err =  NewToken(jwtSecret, read, write); if err != nil {
-    return c, err
-  }
+  c.Token = token
 
   header := map[string][]string{
     "Authorization": []string{"Bearer " + c.Token},

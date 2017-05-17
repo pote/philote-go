@@ -12,16 +12,18 @@ import(
 
 func TestNewClient(t *testing.T) {
   auth := []string{"test-channel"}
+  token, _ := NewToken("", auth, auth)
 
-  _, err := NewClient("ws://localhost:6380", "", auth, auth); if err != nil {
+  _, err := NewClient("ws://localhost:6380", token); if err != nil {
     t.Fatal(err)
   }
 }
 
 func TestBasicPublish(t *testing.T) {
   auth := []string{"test-channel"}
+  token, _ := NewToken("", auth, auth)
 
-  c, err := NewClient("ws://localhost:6380", "", auth, auth); if err != nil {
+  c, err := NewClient("ws://localhost:6380", token); if err != nil {
     t.Fatal(err)
   }
 
@@ -32,12 +34,13 @@ func TestBasicPublish(t *testing.T) {
 
 func TestReceive(t *testing.T) {
   auth := []string{"test-channel"}
+  token, _ := NewToken("", auth, auth)
 
-  c1, err := NewClient("ws://localhost:6380", "", auth, auth); if err != nil {
+  c1, err := NewClient("ws://localhost:6380", token); if err != nil {
     t.Fatal(err)
   }
 
-  c2, err := NewClient("ws://localhost:6380", "", auth, auth); if err != nil {
+  c2, err := NewClient("ws://localhost:6380", token); if err != nil {
     t.Fatal(err)
   }
 
@@ -54,10 +57,12 @@ func TestReceive(t *testing.T) {
 
 func TestNewPhilote(t *testing.T) {
   auth := []string{"test-channel"}
-  c1, err := NewClient("ws://localhost:6380", "", auth, auth); if err != nil {
+  token, _ := NewToken("", auth, auth)
+
+  c1, err := NewClient("ws://localhost:6380", token); if err != nil {
     t.Fatal(err)
   }
-  c2, err := NewClient("ws://localhost:6380", "", auth, auth); if err != nil {
+  c2, err := NewClient("ws://localhost:6380", token); if err != nil {
     t.Fatal(err)
   }
 
