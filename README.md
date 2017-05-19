@@ -1,4 +1,4 @@
-# Philote client for the Go programming language
+# Philote client for the Go programming language ![Build status](https://travis-ci.org/pote/philote-go.svg)
 
 This package provides helper method to create [Philote](https://github.com/pote/philote) authentication tokens as well as a client to connect to and interact with a Philote instance.
 
