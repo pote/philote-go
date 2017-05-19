@@ -1,0 +1,12 @@
+language: go
+os: osx
+
+before_install:
+  - brew install pote/philote/philote
+  - ( philote ) &
+
+go:
+  - 1.x
+  - 1.6
+  - 1.7.x
+  - master
